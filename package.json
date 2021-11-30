@@ -10,6 +10,7 @@
   "scripts": {
     "prepack": "grunt build",
     "build": "grunt build",
+    "b": "grunt build-bookmarklet",
     "test": "grunt eslint"
   },
   "engines": {
@@ -35,6 +36,7 @@
   },
   "homepage": "http://squizlabs.github.io/HTML_CodeSniffer/",
   "devDependencies": {
+    "file-saver": "^2.0.0-rc.3",
     "grunt": "^1.1.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-uglify": "^4.0.0",

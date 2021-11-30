@@ -11,6 +11,61 @@
  *
  */
 
+/**
+  *  Runs the sniffs and downloads the results to a text file 
+  *  
+  */
+_global.downloadHTMLCS = function () {   
+    function q(s) {
+        return '"' + (s || "").toString().replace(/"/g, '""') + '"';
+    }
+
+    function elementToString(element) {
+        if(!element) {
+            return "";
+        }
+        var html = element.outerHTML;
+        if (!html) {
+            return "";
+        }
+        if (html.length > 100) { 
+            return html.substring(0, 100) + "..."; 
+        }
+        return html;
+    }
+
+    function download(filename, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+      
+        element.style.display = 'none';
+        document.body.appendChild(element);
+      
+        element.click();
+      
+        document.body.removeChild(element);
+    }
+
+    HTMLCS.run(function() { 
+
+        var header = '"Type", Code","Message","Element","Data"';
+        var body = this.getMessages().map(function (m) {
+            return [m.type, q(m.code), q(m.msg), q(elementToString(m.element)), q(m.data)].join(",");
+        }).join("\n");
+        var csvContents = header + "\n" + body;
+
+        var filename = "HTML_Codesniffer" + Math.random() + ".csv";
+
+        saveAs(new Blob([csvContents], { type: "text/plain;charset=utf-8" }), filename);
+        download("download.txt", csvContents);
+    });
+      
+    // Start file download.
+    //   download("hello.txt","This is the content of my file :)");
+      
+};
+
 _global.HTMLCS = new function()
 {
     var _standards    = {};

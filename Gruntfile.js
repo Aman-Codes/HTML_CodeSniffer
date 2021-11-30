@@ -16,7 +16,7 @@ module.exports = function (grunt) {
                     footer: grunt.file.read('Contrib/Build/umd-footer.js')
                 },
                 files: {
-                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/**/*.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/HTMLCSAuditor.js']
+                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/**/*.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/HTMLCSAuditor.js', 'node_modules/file-saver/dist/FileSaver.js']
                 }
             },
             dist: {
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
                     footer: grunt.file.read('Contrib/Build/umd-footer.js')
                 },
                 files: {
-                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/**/*.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/HTMLCSAuditor.js']
+                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/**/*.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/HTMLCSAuditor.js', 'node_modules/file-saver/dist/FileSaver.js']
                 }
             },
             bookmarklet: {
@@ -34,7 +34,7 @@ module.exports = function (grunt) {
                     footer: grunt.file.read('Contrib/Build/umd-footer.js')
                 },
                 files: {
-                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/**/*.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/Auditor_with_beacon.js']
+                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/**/*.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/Auditor_with_beacon.js', 'node_modules/file-saver/dist/FileSaver.js']
                 }
             }
         },

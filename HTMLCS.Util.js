@@ -13,6 +13,8 @@
 _global.HTMLCS.util = function() {
     var self = {};
 
+    window.module = window.module || {};
+
     /**
      * Trim off excess spaces on either side.
      *
