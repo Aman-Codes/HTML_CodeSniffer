@@ -15,7 +15,7 @@
   *  Runs the sniffs and downloads the results to a text file 
   *  
   */
-_global.downloadHTMLCS = function () {   
+_global.downloadHTMLCS = function (standard) {   
     function q(s) {
         return '"' + (s || "").toString().replace(/"/g, '""') + '"';
     }
@@ -40,19 +40,19 @@ _global.downloadHTMLCS = function () {
     };
     HTMLCS.run(function() {
         this.getMessages().forEach((m) => {
+            let msgInfo = HTMLCS.util.getElementWindow(document)['HTMLCS_' + standard].getMsgInfo(m.code);
             let obj = {
                 type: typeMap[m.type], 
                 code: m.code, 
                 message: m.msg, 
                 element: elementToString(m.element), 
                 data: m.data,
+                msgInfo: msgInfo,
             };
             result.push(obj);
         });
-        // console.log("result inside run is ", result);
         return result;
     });
-    // console.log("result inside downloadHTMLCS is ", result);
     return result;
 };
 

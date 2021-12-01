@@ -581,18 +581,21 @@ _global.HTMLCS_WCAG2AAA = {
         for (var i = 0; i < techniques.length; i++) {
             techniques[i]  = techniques[i].split('.');
             if (techniques[i][0] !== '') {
-                techniquesStr.push('<a href="https://www.w3.org/WAI/WCAG21/Techniques/' + getPrefix(techniques[i][0]) + techniques[i][0] + '" target="_blank">' + techniques[i][0] + '</a>');
+                techniquesStr.push('https://www.w3.org/WAI/WCAG21/Techniques/' + getPrefix(techniques[i][0]) + techniques[i][0]);
             }
         }
-
-        var successCritStr = ['<a href="http://www.w3.org/TR/WCAG21/#' + successCritList[successCrit].landmark, '" target="_blank">', successCrit, ': ', successCritList[successCrit].name, '</a>'].join('');
+        // var successCritStr = ['<a href="http://www.w3.org/TR/WCAG21/#' + successCritList[successCrit].landmark, '" target="_blank">', successCrit, ': ', successCritList[successCrit].name, '</a>'].join('');
+        var successCritStr = 'http://www.w3.org/TR/WCAG21/#' + successCritList[successCrit].landmark;
         /* eslint-disable-next-line no-unused-vars */
         var principleStr   = ['<a href="', principles[principle].link, '" target="_blank">', principles[principle].name, '</a>'].join('');
+        // var retval = [
+        //     [_global.HTMLCS.getTranslation("auditor_success_criterion"), successCritStr],
+        // ];
         var retval = [
-            [_global.HTMLCS.getTranslation("auditor_success_criterion"), successCritStr],
+            { "Success Criterion": [successCritStr] }
         ];
         if (techniquesStr.length > 0) {
-            retval.push([_global.HTMLCS.getTranslation("auditor_suggested_techniques"), techniquesStr.join(' ')]);
+            retval.push({"Suggested Techniques": techniquesStr});
         }
 
         return retval;

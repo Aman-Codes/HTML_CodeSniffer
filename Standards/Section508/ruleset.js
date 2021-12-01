@@ -35,7 +35,7 @@ _global.HTMLCS_Section508 = {
         var paragraph     = msgCodeParts[1].toLowerCase();
 
         var retval = [
-            ['Section', '1194.22 (' + paragraph + ')']
+            {'Section': '1194.22 (' + paragraph + ')'}
         ];
 
         return retval;
