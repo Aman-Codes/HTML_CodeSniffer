@@ -1410,7 +1410,7 @@ _global.HTMLCSAuditor = new function()
      *
      * @returns undefined
      */
-    this.run = function(standard, source, options) {
+    this.run = function(standard, source, options, callback) {
         // Save the top window.
         _top = window;
 
@@ -1601,6 +1601,7 @@ _global.HTMLCSAuditor = new function()
         };
 
         _processSource(standard, _sources.concat([]));
+        callback();
     };
 
     this.versionCheck = function(response) {
