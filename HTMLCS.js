@@ -49,16 +49,27 @@ _global.downloadHTMLCS = function () {
 
     HTMLCS.run(function() { 
 
-        var header = '"Type", Code","Message","Element","Data"';
+        // var header = '"Type", Code","Message","Element","Data"';
+        // var body = this.getMessages().map(function (m) {
+        //     return [m.type, q(m.code), q(m.msg), q(elementToString(m.element)), q(m.data)].join(",");
+        // }).join("\n");
         var body = this.getMessages().map(function (m) {
-            return [m.type, q(m.code), q(m.msg), q(elementToString(m.element)), q(m.data)].join(",");
-        }).join("\n");
-        var csvContents = header + "\n" + body;
+            return {
+                type: m.type, 
+                code: q(m.code), 
+                message: q(m.msg), 
+                element: q(elementToString(m.element)), 
+                data: q(m.data)
+            };
+        });
+        
+        // var csvContents = header + "\n" + body;
 
-        var filename = "HTML_Codesniffer" + Math.random() + ".csv";
+        // var filename = "HTML_Codesniffer" + Math.random() + ".csv";
 
-        saveAs(new Blob([csvContents], { type: "text/plain;charset=utf-8" }), filename);
-        download("download.txt", csvContents);
+        // saveAs(new Blob([csvContents], { type: "text/plain;charset=utf-8" }), filename);
+        download("download.txt", body);
+        return body;
     });
       
     // Start file download.
