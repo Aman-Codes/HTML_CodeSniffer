@@ -41,14 +41,13 @@ _global.downloadHTMLCS = function () {
                 message: m.msg, 
                 element: elementToString(m.element), 
                 data: m.data,
-                m: m,
             };
             result.push(obj);
         });
-        console.log("result inside run is ", result);
+        // console.log("result inside run is ", result);
         return result;
     });
-    console.log("result inside downloadHTMLCS is ", result);
+    // console.log("result inside downloadHTMLCS is ", result);
     return result;
 };
 
