@@ -33,10 +33,15 @@ _global.downloadHTMLCS = function () {
         return html;
     }
     let result = [];
+    const typeMap = {
+        1: "error",
+        2: "warning",
+        3: "notice"
+    };
     HTMLCS.run(function() {
         this.getMessages().forEach((m) => {
             let obj = {
-                type: m.type, 
+                type: typeMap[m.type], 
                 code: m.code, 
                 message: m.msg, 
                 element: elementToString(m.element), 
