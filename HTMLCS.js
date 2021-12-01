@@ -19,7 +19,6 @@ _global.downloadHTMLCS = function () {
     function q(s) {
         return '"' + (s || "").toString().replace(/"/g, '""') + '"';
     }
-
     function elementToString(element) {
         if(!element) {
             return "";
@@ -33,52 +32,24 @@ _global.downloadHTMLCS = function () {
         }
         return html;
     }
-
-    function download(filename, text) {
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', filename);
-      
-        element.style.display = 'none';
-        document.body.appendChild(element);
-      
-        element.click();
-      
-        document.body.removeChild(element);
-    }
-
-    HTMLCS.run(function() { 
-
-        // var header = '"Type", Code","Message","Element","Data"';
-        // var body = this.getMessages().map(function (m) {
-        //     return [m.type, q(m.code), q(m.msg), q(elementToString(m.element)), q(m.data)].join(",");
-        // }).join("\n");
-        let result = [];
-        var body = this.getMessages().map(function (m) {
+    let result = [];
+    HTMLCS.run(function() {
+        this.getMessages().forEach((m) => {
             let obj = {
                 type: m.type, 
                 code: m.code, 
                 message: m.msg, 
                 element: elementToString(m.element), 
-                data: m.data
+                data: m.data,
+                m: m,
             };
-            console.log("obj is", obj);
             result.push(obj);
         });
-        
-        // var csvContents = header + "\n" + body;
-
-        // var filename = "HTML_Codesniffer" + Math.random() + ".csv";
-
-        // saveAs(new Blob([csvContents], { type: "text/plain;charset=utf-8" }), filename);
-        download("download.json", result);
-        console.log("result is ", result);
+        console.log("result inside run is ", result);
         return result;
     });
-      
-    // Start file download.
-    //   download("hello.txt","This is the content of my file :)");
-      
+    console.log("result inside downloadHTMLCS is ", result);
+    return result;
 };
 
 _global.HTMLCS = new function()

@@ -1601,7 +1601,7 @@ _global.HTMLCSAuditor = new function()
         };
 
         _processSource(standard, _sources.concat([]));
-        callback();
+        return callback();
     };
 
     this.versionCheck = function(response) {
