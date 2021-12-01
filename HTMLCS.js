@@ -56,10 +56,10 @@ _global.downloadHTMLCS = function () {
         var body = this.getMessages().map(function (m) {
             return {
                 type: m.type, 
-                code: q(m.code), 
-                message: q(m.msg), 
-                element: q(elementToString(m.element)), 
-                data: q(m.data)
+                code: m.code, 
+                message: m.msg, 
+                element: elementToString(m.element), 
+                data: m.data
             };
         });
         
@@ -68,7 +68,7 @@ _global.downloadHTMLCS = function () {
         // var filename = "HTML_Codesniffer" + Math.random() + ".csv";
 
         // saveAs(new Blob([csvContents], { type: "text/plain;charset=utf-8" }), filename);
-        download("download.txt", body);
+        download("download.json", body);
         return body;
     });
       
