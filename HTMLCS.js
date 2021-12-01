@@ -53,14 +53,17 @@ _global.downloadHTMLCS = function () {
         // var body = this.getMessages().map(function (m) {
         //     return [m.type, q(m.code), q(m.msg), q(elementToString(m.element)), q(m.data)].join(",");
         // }).join("\n");
+        let result = [];
         var body = this.getMessages().map(function (m) {
-            return {
+            let obj = {
                 type: m.type, 
                 code: m.code, 
                 message: m.msg, 
                 element: elementToString(m.element), 
                 data: m.data
             };
+            console.log("obj is", obj);
+            result.push(obj);
         });
         
         // var csvContents = header + "\n" + body;
@@ -68,8 +71,9 @@ _global.downloadHTMLCS = function () {
         // var filename = "HTML_Codesniffer" + Math.random() + ".csv";
 
         // saveAs(new Blob([csvContents], { type: "text/plain;charset=utf-8" }), filename);
-        download("download.json", body);
-        return body;
+        download("download.json", result);
+        console.log("result is ", result);
+        return result;
     });
       
     // Start file download.
